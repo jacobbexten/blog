@@ -34,11 +34,23 @@
 
             </header>
 
-            <div>
+            {% if user.is_authenticated %}
 
-                {% block content %}
+                <p>Hi {{ user.username }}!</p>
 
-            {% endblock content %}
+                <p><a href="{% url 'logout' %}">Log out</a></p>
+
+            {% else %}
+
+                <p>You are not logged in.</p>
+
+                <a href="{% url 'login' %}">Log In</a>
+
+            {% endif %}
+
+        {% block content %}
+
+        {% endblock content %}
 
         </div>
 
